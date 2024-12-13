@@ -32,6 +32,10 @@ module I_DECODE_test();
         wire [4:0] instr_2016_test, instr_1511_test;
         wire [31:0] rdat1_test, rdat2_test, npc_out, signext_test;
         
+        wire [31:0] latch_reg0_out, latch_reg1_out, latch_reg2_out, latch_reg3_out;
+        wire [31:0] latch_reg4_out, latch_reg5_out, latch_reg6_out, latch_reg7_out;
+        wire [31:0] latch_reg8_out, latch_reg9_out;
+        
         I_DECODE decode(
             .clk(clk),
             .rst(rst),
@@ -48,11 +52,21 @@ module I_DECODE_test();
             .rdat1_out(rdat1_test),
             .rdat2_out(rdat2_test),
             .npc_out(npc_out),
-            .latch_signext_out(signext_test)
+            .latch_signext_out(signext_test),
+            .latch_reg0_out(latch_reg0_out),
+            .latch_reg1_out(latch_reg1_out),
+            .latch_reg2_out(latch_reg2_out),
+            .latch_reg3_out(latch_reg3_out),
+            .latch_reg4_out(latch_reg4_out),
+            .latch_reg5_out(latch_reg5_out),
+            .latch_reg6_out(latch_reg6_out),
+            .latch_reg7_out(latch_reg7_out),
+            .latch_reg8_out(latch_reg8_out),
+            .latch_reg9_out(latch_reg9_out)
         );
         
         initial clk = 0;
-        always #1 clk <= ~clk;
+        always #5 clk <= ~clk;
         
         initial begin
             rst = 1;

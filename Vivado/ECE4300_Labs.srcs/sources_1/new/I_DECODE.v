@@ -37,15 +37,19 @@ module I_DECODE(
     output [31:0] latch_signext_out,
     
     // Outputs for the first 10 registers from the latch
-    output [31:0] latch_reg0_out, latch_reg1_out, latch_reg2_out, latch_reg3_out,
-    output [31:0] latch_reg4_out, latch_reg5_out, latch_reg6_out, latch_reg7_out,
-    output [31:0] latch_reg8_out, latch_reg9_out
+    output wire [31:0] reg0, reg1, reg2, reg3,
+    output wire [31:0] reg4, reg5, reg6, reg7,
+    output wire [31:0] reg8, reg9
     );
     
     // Intermediate signals
     wire [8:0] wire_control;  // Control signals from control unit
     wire [31:0] wire_data1, wire_data2;  // Register values
     wire [31:0] wire_sign_ext;  // Sign-extended value
+    
+    wire [31:0] reg0_out, reg1_out, reg2_out, reg3_out;
+    wire [31:0] reg4_out, reg5_out, reg6_out, reg7_out;
+    wire [31:0] reg8_out, reg9_out;
     
     // Instantiate control unit
     control control1(
@@ -54,7 +58,7 @@ module I_DECODE(
     );
     
     // Instantiate register file
-    register reg1(
+    register register1(
         .rs(instr_in[25:21]),
         .rt(instr_in[20:16]),
         .rd(rd),
@@ -66,16 +70,16 @@ module I_DECODE(
         .read_data2(wire_data2),
         
         // Outputs for the first 10 registers
-        .reg0_out(latch_reg0_out),
-        .reg1_out(latch_reg1_out),
-        .reg2_out(latch_reg2_out),
-        .reg3_out(latch_reg3_out),
-        .reg4_out(latch_reg4_out),
-        .reg5_out(latch_reg5_out),
-        .reg6_out(latch_reg6_out),
-        .reg7_out(latch_reg7_out),
-        .reg8_out(latch_reg8_out),
-        .reg9_out(latch_reg9_out)
+        .reg0_out(reg0_out),
+        .reg1_out(reg1_out),
+        .reg2_out(reg2_out),
+        .reg3_out(reg3_out),
+        .reg4_out(reg4_out),
+        .reg5_out(reg5_out),
+        .reg6_out(reg6_out),
+        .reg7_out(reg7_out),
+        .reg8_out(reg8_out),
+        .reg9_out(reg9_out)
     );
     
     // Instantiate sign extension
@@ -99,6 +103,18 @@ module I_DECODE(
         .instr_2016(instr_in[20:16]),
         .instr_1511(instr_in[15:11]),
         
+        // Inputs for the first 10 registers
+        .reg0_out(reg0_out),
+        .reg1_out(reg1_out),
+        .reg2_out(reg2_out),
+        .reg3_out(reg3_out),
+        .reg4_out(reg4_out),
+        .reg5_out(reg5_out),
+        .reg6_out(reg6_out),
+        .reg7_out(reg7_out),
+        .reg8_out(reg8_out),
+        .reg9_out(reg9_out),
+        
         // Outputs
         .wb_ctrout(wb_out),
         .m_ctrout(m_out),
@@ -111,16 +127,16 @@ module I_DECODE(
         .out_1511(instr_1511_out),
         
         // Register values (passed through from register module)
-        .latch_reg0_out(latch_reg0_out),
-        .latch_reg1_out(latch_reg1_out),
-        .latch_reg2_out(latch_reg2_out),
-        .latch_reg3_out(latch_reg3_out),
-        .latch_reg4_out(latch_reg4_out),
-        .latch_reg5_out(latch_reg5_out),
-        .latch_reg6_out(latch_reg6_out),
-        .latch_reg7_out(latch_reg7_out),
-        .latch_reg8_out(latch_reg8_out),
-        .latch_reg9_out(latch_reg9_out)
+        .latch_reg0_out(reg0),
+        .latch_reg1_out(reg1),
+        .latch_reg2_out(reg2),
+        .latch_reg3_out(reg3),
+        .latch_reg4_out(reg4),
+        .latch_reg5_out(reg5),
+        .latch_reg6_out(reg6),
+        .latch_reg7_out(reg7),
+        .latch_reg8_out(reg8),
+        .latch_reg9_out(reg9)
     );
     
 endmodule

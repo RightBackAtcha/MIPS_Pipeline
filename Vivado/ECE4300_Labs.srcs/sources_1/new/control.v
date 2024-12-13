@@ -26,12 +26,13 @@ module control(
 
     always @(*) begin
         case (opcode)
-            6'b000000: control_bits = 9'b110000010; // r-type
-            6'b100011: control_bits = 9'b000101011; // load word
-            6'b101011: control_bits = 9'b000100100; // store word
+            6'b000000: control_bits = 9'b1100_000_10; // r-type
+            6'b100011: control_bits = 9'b0001_010_11; // load word
+            6'b101011: control_bits = 9'b0001_001_00; // store word
+            6'b000100: control_bits = 9'b0000_001_01; // branch
+            6'b100000: control_bits = 9'b000_000_000; // nop
             
-            6'b000100: control_bits = 9'b000000101; // branch
-            default: control_bits = 9'b000000000; // nop
+            default: control_bits = 9'b0000_000_00;
         endcase
     end
 

@@ -74,6 +74,7 @@ module id_ex(
             out_ext <= 0;
             out_2016 <= 0;
             out_1511 <= 0;
+            
             latch_reg0_out <= 0;
             latch_reg1_out <= 0;
             latch_reg2_out <= 0;

@@ -97,15 +97,15 @@ module test_PIPELINE();
 
     // Clock generation
     initial clk = 0;
-    always #1 clk = ~clk;
+    always #5 clk = ~clk;
     
     initial begin
         rst = 1;
         
-        #15;
+        #20;
         rst = 0;
         
-        #100;
+        #250;
         $finish; 
     end
 

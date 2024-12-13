@@ -22,13 +22,14 @@
 
 module I_FETCH_test();
 
-    reg clk_test;
+    reg clk_test, rst;
     reg MEM_sel;
     reg [31:0] MEM_NPC_test;
     wire [31:0] instr_test, npc_test;
     
     I_FETCH fetch(
         .clk(clk_test),
+        .rst(rst),
         .EX_MEM_NPC(MEM_NPC_test),
         .EX_MEM_PCSrc(MEM_sel),
         .IF_ID_instr(instr_test),
@@ -36,17 +37,19 @@ module I_FETCH_test();
     );
     
     initial clk_test <= 0;
-    always #1 clk_test <= ~clk_test;
+    always #5 clk_test <= ~clk_test;
     
     initial begin
-        MEM_sel <= 0;
+        rst = 1;
+        #50
+        rst = 0;
+        MEM_sel <=0;
+        #50
         MEM_NPC_test <= 32'hFFFFFFFF;
         #20
         MEM_NPC_test <= 32'h00000000;
         MEM_sel <= 1;
-        #10
-        MEM_sel <= 0;
-        #10
+        #100
     $finish;
     end
 

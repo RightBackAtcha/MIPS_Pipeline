@@ -28,6 +28,9 @@ module test_reg();
     
     wire [31:0] test_read1, test_read2;
     
+    wire [31:0] reg0_out, reg1_out, reg2_out, reg3_out, reg4_out;
+    wire [31:0] reg5_out, reg6_out, reg7_out, reg8_out, reg9_out;
+    
     register reg1(
         .rs(test_rs),
         .rd(test_rd),
@@ -37,7 +40,17 @@ module test_reg();
         .clk(clk),
         .rst(rst),
         .read_data1(test_read1),
-        .read_data2(test_read2)
+        .read_data2(test_read2),
+        .reg0_out(reg0_out),
+        .reg1_out(reg1_out),
+        .reg2_out(reg2_out),
+        .reg3_out(reg3_out),
+        .reg4_out(reg4_out),
+        .reg5_out(reg5_out),
+        .reg6_out(reg6_out),
+        .reg7_out(reg7_out),
+        .reg8_out(reg8_out),
+        .reg9_out(reg9_out)
     );
     
     initial clk <= 0;

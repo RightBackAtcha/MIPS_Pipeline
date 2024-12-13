@@ -31,8 +31,14 @@ module d_mem(
     reg [31:0] mem [0:255];
     integer i;
     
+    initial begin
+        for(i = 0; i < 256; i = i + 1)
+            mem[i] = 32'h0;
+        $readmemb("C:/Users/Jorda/ECE4300_Labs/ECE4300_Labs.srcs/sources_1/new/data.txt", mem);
+   end
+    
     // Memory Read
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         if(mem_read) begin
             read_dat = mem[addr[7:0]];
         end else begin
@@ -43,18 +49,10 @@ module d_mem(
     // Memory Write
     always @(posedge clk) begin
         if(rst) begin
-            for(i = 0; i < 256; i = i + 1)
-                mem[i] <= 32'b0;
+            mem[255] <= 32'hFFFFFFFF;
         end
         else if(mem_write) begin
             mem[addr[7:0]] <= write_dat;
         end
     end
-    
-    initial begin
-        $readmemb("C:/Users/Jorda/ECE4300_Labs/ECE4300_Labs.srcs/sources_1/new/data.txt", mem);
-        for (i = 0; i < 6; i = i + 1)
-            $display(mem[i]);
-    end
-    
 endmodule

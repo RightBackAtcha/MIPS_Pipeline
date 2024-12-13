@@ -26,13 +26,9 @@ module program_counter(
     output reg [31:0] pc
     );
     
-    initial begin
-        pc <= 0;
-    end
-    
-    always @ (posedge clk) begin
+    always @ (posedge clk or posedge rst) begin
         if(rst)
-            pc <= 0;
+            pc <= 32'b0;
         else
             pc <= npc;
     end

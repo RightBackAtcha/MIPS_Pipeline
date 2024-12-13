@@ -52,8 +52,6 @@ module PIPELINE(
     output [31:0] reg_out5, reg_out6, reg_out7, reg_out8, reg_out9
     );
     
-    // Module wires
-    
     // Fetch Stage
     I_FETCH fetch_stage(
         // Inputs
@@ -90,16 +88,16 @@ module PIPELINE(
         .latch_signext_out(decode_signext),
         
         // New outputs for the first 10 registers
-        .latch_reg0_out(reg_out0),
-        .latch_reg1_out(reg_out1),
-        .latch_reg2_out(reg_out2),
-        .latch_reg3_out(reg_out3),
-        .latch_reg4_out(reg_out4),
-        .latch_reg5_out(reg_out5),
-        .latch_reg6_out(reg_out6),
-        .latch_reg7_out(reg_out7),
-        .latch_reg8_out(reg_out8),
-        .latch_reg9_out(reg_out9)
+        .reg0(reg_out0),
+        .reg1(reg_out1),
+        .reg2(reg_out2),
+        .reg3(reg_out3),
+        .reg4(reg_out4),
+        .reg5(reg_out5),
+        .reg6(reg_out6),
+        .reg7(reg_out7),
+        .reg8(reg_out8),
+        .reg9(reg_out9)
     );
     
     // Execute Stage

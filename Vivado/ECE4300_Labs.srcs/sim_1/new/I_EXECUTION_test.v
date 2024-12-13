@@ -21,8 +21,6 @@
 
 
 module I_EXECUTION_test();
-
-    // Inputs
     reg test_clk;
     reg test_rst;
     reg [1:0] test_wb_ctl;
@@ -35,7 +33,6 @@ module I_EXECUTION_test();
     reg [31:0] test_rdat2;
     reg [31:0] test_sign_ext;
 
-    // Outputs
     wire test_alu_zero;
     wire [1:0] test_mem_wb;
     wire [2:0] test_mem_m;
@@ -44,9 +41,7 @@ module I_EXECUTION_test();
     wire [4:0] test_mux5_out;
     wire [31:0] test_dat2_mem;
 
-    // Instantiate the module
-    I_EXECUTION uut (
-        // Inputs
+    I_EXECUTION execute (
         .clk(test_clk),
         .rst(test_rst),
         .wb_ctl(test_wb_ctl),
@@ -59,7 +54,6 @@ module I_EXECUTION_test();
         .rdat2(test_rdat2),
         .sign_ext(test_sign_ext),
         
-        // Outputs
         .alu_zero(test_alu_zero),
         .mem_wb(test_mem_wb),
         .mem_m(test_mem_m),
@@ -72,10 +66,9 @@ module I_EXECUTION_test();
     // Clock generation
     initial begin
         test_clk = 0;
-        forever #1 test_clk = ~test_clk;
+        forever #5 test_clk = ~test_clk;
     end
 
-    // Test stimulus
     initial begin
         test_rst = 1;
         test_wb_ctl = 0;
@@ -87,22 +80,21 @@ module I_EXECUTION_test();
         test_rdat1 = 0;
         test_rdat2 = 0;
         test_sign_ext = 0;
+        
         #10;
         test_rst = 0;
-        #10;
-        test_wb_ctl = 2'b10;
-        test_m_ctl = 3'b011;
-        test_ex_ctl = 4'b1101;
-        test_instr_2016 = 5'b10101;
-        test_instr_1511 = 5'b01010;
-        test_npc_out = 32'h00000010;
-        test_rdat1 = 32'h00000020;
-        test_rdat2 = 32'h00000030;
-        test_sign_ext = 32'h00000004;
-        #20;
-        test_ex_ctl = 4'b0010;
-        test_rdat1 = 32'h00000050;
-        test_sign_ext = 32'hFFFFFFFC;
+        
+        test_sign_ext = 32'h00000020;
+        test_rdat1 = 32'h00000006;
+        test_rdat2 = 32'h00000001;
+        test_npc_out = 32'h00000002;
+        
+        test_instr_2016 = 5'b00000;
+        test_instr_1511 = 5'b00000;
+        test_wb_ctl = 2'b00;
+        test_m_ctl = 3'b000;
+        test_ex_ctl = 4'b0000;
+        
         #20;
         $finish;
     end

@@ -56,7 +56,7 @@ module test_MEM_STAGE();
 
     // Clock generation
     initial clk = 0;
-    always #1 clk = ~clk;
+    always #5 clk = ~clk;
 
     // Test sequence
     initial begin
@@ -68,7 +68,7 @@ module test_MEM_STAGE();
         test_mem_addr = 32'h00000000;
         test_write_dat = 32'h00000000;
 
-        #10;
+        #20;
         rst = 0;
         // Test Case 1: No memory operation
         test_ex_wb = 2'b10;          // Enable reg_write
@@ -77,23 +77,17 @@ module test_MEM_STAGE();
         test_mem_addr = 32'h00000005;
         test_write_dat = 32'hCAFEBABE;
         
-        #10;
+        #20;
         // Test Case 2: Memory read operation
         test_ex_m = 3'b010;          // mem_read = 1
-        test_write_dat = 32'hDEADBEEF; // Data to write, but no effect since mem_read is enabled
+        test_write_dat = 32'h000005F3; // Data to write, but no effect since mem_read is enabled
         
-        #10;
+        #20;
         // Test Case 3: Branching
         test_ex_m = 3'b100;          // Branch condition (PCSrc depends on alu_zero)
         test_alu_zero = 1;           // Trigger branch
         
-        #10;
-        // Test Case 4: Reset behavior
-        rst = 1;
-        
-        #10;
-        rst = 0;
-
+        #20;
         $finish;
     end
 endmodule

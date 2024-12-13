@@ -23,7 +23,7 @@
 module alu(
     input [2:0] alu_control,
     input [31:0] in1, in2,
-    output zero,
+    output reg zero,
     output reg [31:0] result
     );
     
@@ -36,8 +36,7 @@ module alu(
             3'b111: result = (in1 < in2) ? 32'b1 : 32'b0; // Set less than
             default: result = 32'b0;
         endcase
+        zero = (result == 32'b0);
     end
-    
-    assign zero = (result == 32'b0);
     
 endmodule

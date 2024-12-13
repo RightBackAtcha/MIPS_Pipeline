@@ -42,7 +42,7 @@ module MEM_STAGE(
         .mem_read(ex_m[1]),
         .write_dat(write_dat),
         .addr(mem_addr),
-        
+    
         .read_dat(read_dat)
     );
     

@@ -37,7 +37,7 @@ module memory_test();
 
     integer i;
     initial begin
-        for(i = 0; i < 9; i = i + 1)
+        for(i = 0; i < 32; i = i + 1)
         begin
             addr_test <= i;
             #10;

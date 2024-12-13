@@ -30,12 +30,9 @@ module memory(
     integer i;
     initial begin
         $readmemb("C:/Users/Jorda/ECE4300_Labs/ECE4300_Labs.srcs/sources_1/new/risc.txt", MEM);
-        for (i = 0; i < 24; i = i + 1)
-           $display(MEM[i]);
     end
-
     
-    always @ (posedge clk) begin
+    always @ (*) begin
         data <= MEM[addr];
     end 
 endmodule
