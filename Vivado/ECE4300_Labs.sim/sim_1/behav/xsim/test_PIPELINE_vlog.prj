@@ -1,0 +1,31 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../ECE4300_Labs.srcs/sources_1/new/I_DECODE.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/I_EXECUTION.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/I_FETCH.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/MEM_STAGE.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/PIPELINE.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/WB_STAGE.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/adder.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/alu.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/alu_control.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/control.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/d_mem.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/ex_mem.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/id_ex.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/if_id.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/incr.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/mem_wb.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/memory.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/mux.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/mux_5bit.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/program_counter.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/reg.v" \
+"../../../../ECE4300_Labs.srcs/sources_1/new/s_extend.v" \
+"../../../../ECE4300_Labs.srcs/sim_1/new/test_PIPELINE.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
